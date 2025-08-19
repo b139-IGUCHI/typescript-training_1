@@ -1,26 +1,121 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, ChangeEvent } from "react";
+import { getAddressFromPostalCode } from "./postalCodeMap";
+
+// オブジェクトは、プロパティやメソッドなど複数の値をまとめて1つにした入れ物のこと
+// 型定義で「このオブジェクトは何を持っているか」を定義している
+type Person = {
+    name: string; // プロパティ名: 型
+    age: number;
+    isMale: boolean;
+    address: () => string;
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    // プリミティブ型の例
+    // プリミティブ型は、値そのものを保持している
+    const [primitiveName, setPrimitiveName] = useState<string>("デフォルト名");
+    const [primitiveAge, setPrimitiveAge] = useState<number>(20);
+    const [primitiveClickCount, setPrimitiveClickCount] = useState<number>(0);
+    const [postalCode, setPostalCode] = useState<string>("1000001");
+
+    // オブジェクト型の例
+    // オブジェクトは、プロパティやメソッドなど複数の値をまとめて1つにした入れ物のこと
+    // 以下のpersonはname、age、isMale、addressをもつオブジェクト
+    // nameとageはプロパティ、addressはメソッド
+    const [person, setPerson] = useState<Person>({
+        name: "デフォルト名",
+        age: 20,
+        isMale: true,
+        address: () => getAddressFromPostalCode(postalCode)
+    });
+
+    // プリミティブ型更新
+    const changePrimitive = () => {
+        const newCount = primitiveClickCount + 1;
+        setPrimitiveClickCount(newCount);
+        setPrimitiveName(`デフォルト名${newCount}`);
+        setPrimitiveAge(primitiveAge + 1);
+    };
+
+    // オブジェクト型更新
+    const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setPerson({ ...person, name: e.target.value });
+    };
+
+    const increaseAge = () => {
+        setPerson({ ...person, age: person.age + 1 });
+    };
+
+    const decreaseAge = () => {
+        setPerson({ ...person, age: person.age - 1 });
+    };
+
+    const handleGenderToggle = () => {
+        setPerson({ ...person, isMale: !person.isMale });
+    };
+
+    // 郵便番号変更
+    const handlePostalCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newPostal = e.target.value;
+        setPostalCode(newPostal);
+        setPerson(prev => ({
+            ...prev,
+            address: () => getAddressFromPostalCode(newPostal)
+        }));
+    };
+
+    return (
+        <div>
+            <h1>TypeScript 学習教材</h1>
+
+            {/* プリミティブ型 */}
+            <h2>プリミティブ型</h2>
+            <p>名前: {primitiveName}</p>
+            <p>年齢: {primitiveAge}</p>
+            <button onClick={changePrimitive}>プリミティブを変更</button>
+
+            {/* オブジェクト型 */}
+            <h2>オブジェクト型</h2>
+            <p>名前: {person.name}</p>
+            <p>年齢: {person.age}</p>
+            <p>性別: {person.isMale ? "男性" : "女性"}</p>
+            <p>住所: {person.address()}</p>
+
+            <div>
+                <p>
+                    <input type="text" value={person.name} onChange={handleNameChange} placeholder="名前"/>
+                </p>
+                <button onClick={increaseAge}>年齢を+1</button>
+                <button onClick={decreaseAge}>年齢を-1</button>
+                <p>
+                    <label>
+                        性別
+                        <input type="checkbox" checked={person.isMale} onChange={handleGenderToggle}/>
+                    </label>
+                </p>
+                <p>
+                    <input
+                        type="text"
+                        value={postalCode}
+                        onChange={handlePostalCodeChange}
+                        placeholder="郵便番号 上3桁一致で住所を取得"
+                    />
+                </p>
+            </div>
+
+            <p>現在のオブジェクトをJSONで表示</p>
+            <pre>{JSON.stringify(
+                {
+                    name: person.name,
+                    age: person.age,
+                    isMale: person.isMale,
+                    address: person.address()
+                },
+                null,
+                2
+            )}</pre>
+        </div>
+    );
 }
 
 export default App;
