@@ -1,5 +1,6 @@
-import React, { useState, ChangeEvent } from "react";
-import { getAddressFromPostalCode } from "./postalCodeMap";
+import React, {useState, ChangeEvent} from "react";
+import {getAddressFromPostalCode} from "./postalCodeMap";
+import "./App.css";
 
 // オブジェクトは、プロパティやメソッドなど複数の値をまとめて1つにした入れ物のこと
 // 型定義で「このオブジェクトは何を持っているか」を定義している
@@ -39,19 +40,19 @@ function App() {
 
     // オブジェクト型更新
     const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setPerson({ ...person, name: e.target.value });
+        setPerson({...person, name: e.target.value});
     };
 
     const increaseAge = () => {
-        setPerson({ ...person, age: person.age + 1 });
+        setPerson({...person, age: person.age + 1});
     };
 
     const decreaseAge = () => {
-        setPerson({ ...person, age: person.age - 1 });
+        setPerson({...person, age: person.age - 1});
     };
 
     const handleGenderToggle = () => {
-        setPerson({ ...person, isMale: !person.isMale });
+        setPerson({...person, isMale: !person.isMale});
     };
 
     // 郵便番号変更
@@ -65,55 +66,65 @@ function App() {
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>TypeScript 学習教材</h1>
 
             {/* プリミティブ型 */}
-            <h2>プリミティブ型</h2>
-            <p>名前: {primitiveName}</p>
-            <p>年齢: {primitiveAge}</p>
-            <button onClick={changePrimitive}>プリミティブを変更</button>
+            <section className="card">
+                <h2>プリミティブ型</h2>
+                <p><strong>名前:</strong> {primitiveName}</p>
+                <p><strong>年齢:</strong> {primitiveAge}</p>
+                <button onClick={changePrimitive} className="btn">プリミティブを変更</button>
+            </section>
 
             {/* オブジェクト型 */}
-            <h2>オブジェクト型</h2>
-            <p>名前: {person.name}</p>
-            <p>年齢: {person.age}</p>
-            <p>性別: {person.isMale ? "男性" : "女性"}</p>
-            <p>住所: {person.address()}</p>
+            <section className="card">
+                <h2>オブジェクト型</h2>
+                <p><strong>名前:</strong> {person.name}</p>
+                <p><strong>年齢:</strong> {person.age}</p>
+                <p><strong>性別:</strong> {person.isMale ? "男性" : "女性"}</p>
+                <p><strong>住所:</strong> {person.address()}</p>
 
-            <div>
-                <p>
-                    <input type="text" value={person.name} onChange={handleNameChange} placeholder="名前"/>
-                </p>
-                <button onClick={increaseAge}>年齢を+1</button>
-                <button onClick={decreaseAge}>年齢を-1</button>
-                <p>
-                    <label>
-                        性別
+                <div className="form">
+                    <input
+                        type="text"
+                        value={person.name}
+                        onChange={handleNameChange}
+                        placeholder="名前"
+                    />
+                    <div className="btn-group">
+                        <button onClick={increaseAge} className="btn">年齢を+1</button>
+                        <button onClick={decreaseAge} className="btn">年齢を-1</button>
+                    </div>
+                    <label className="checkbox">
                         <input type="checkbox" checked={person.isMale} onChange={handleGenderToggle}/>
+                        性別を切り替え
                     </label>
-                </p>
-                <p>
                     <input
                         type="text"
                         value={postalCode}
                         onChange={handlePostalCodeChange}
                         placeholder="郵便番号 上3桁一致で住所を取得"
                     />
-                </p>
-            </div>
+                </div>
+            </section>
 
-            <p>現在のオブジェクトをJSONで表示</p>
-            <pre>{JSON.stringify(
-                {
-                    name: person.name,
-                    age: person.age,
-                    isMale: person.isMale,
-                    address: person.address()
-                },
-                null,
-                2
-            )}</pre>
+            {/* JSON 表示 */}
+            <section className="card">
+                <h2>現在のオブジェクト(JSON)</h2>
+                <pre className="json-view">
+                    {JSON.stringify(
+                        {
+                            name: person.name,
+                            age: person.age,
+                            isMale: person.isMale,
+                            address: person.address()
+                        },
+                        null,
+                        2
+                    )}
+                </pre>
+            </section>
         </div>
     );
 }
