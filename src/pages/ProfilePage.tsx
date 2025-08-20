@@ -5,8 +5,8 @@ function ProfilePage() {
     return (
         <Layout>
         <div style={{ padding: "2rem" }}>
-            <h1>詳細ページ</h1>
-            <p>ここに学習コンテンツを配置します。</p>
+            <h1>プロフィールページ</h1>
+            <p>未実装</p>
         </div>
             </Layout>
     );
