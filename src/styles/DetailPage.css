@@ -1,4 +1,27 @@
-/* ページ全体 */
+.page-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #ddd;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.nav-btn.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.page-content {
+    margin-top: 20px;
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
