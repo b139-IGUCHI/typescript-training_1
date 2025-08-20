@@ -1,0 +1,101 @@
+/* ページ全体 */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 各セクションをカード風に */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #007bff;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 8px;
+}
+
+.card p {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* ボタン */
+.btn {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn:hover {
+    background: #0056b3;
+}
+
+/* 複数ボタンを横並びに */
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* フォーム系 */
+.form {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form input[type="text"] {
+    padding: 8px 10px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.form input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+/* チェックボックス */
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* JSON 表示 */
+.json-view {
+    background: #1e1e1e;
+    color: #f1f1f1;
+    font-family: "Courier New", monospace;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    overflow-x: auto;
+}
