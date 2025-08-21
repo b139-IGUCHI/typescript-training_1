@@ -4,7 +4,7 @@ function DetailPage4Content() {
 
     return (
         <div className="container">
-            <h1 className="page-title">オブジェクトと配列・連想配列</h1>
+            <h1 className="page-title"></h1>
 
             <section className="card">
 
