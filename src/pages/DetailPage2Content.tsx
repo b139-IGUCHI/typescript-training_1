@@ -1,49 +1,128 @@
-import React, { useState } from "react";
 import "./../styles/DetailPage.css";
+import React from "react";
 
-function DetailPage2Content() {
-    // 配列とオブジェクトの対比
-    const [array, setArray] = useState<string[]>(["リンゴ", "バナナ", "オレンジ"]);
-    const [object, setObject] = useState({ a: 1, b: 2, c: 3 });
+function DetailPage4Content() {
+    //   // Record型 オブジェクトと配列の中にオブジェクトと配列がある例。key: valueの形で表現する。
+    // hatsとjacketsがオブジェクトであり、categoriesはhatsとjacketsを含むオブジェクトである。
+    type clothes= {
+        id: number;　// key: value
+        title: string;
+        routeName: string;
+    }
+    const clothesObject:Record<string, clothes> = {
+        hats: {
+            id: 1,　// key: value
+            title: 'Hats',
+            routeName: 'hats'
+        },
+        jackets: {
+            id: 2,
+            title: 'Jackets',
+            routeName: 'jackets'
+        }
+    }
 
-    // 連想配列の例（指定の内容）
-    const [assocArray, setAssocArray] = useState<{ [key: string]: number }>({
-        apple: 10,
-        banana: 20,
-        orange: 30,
-    });
+    const clothesArray  = [
+        [1, 'Hats', 'hats'],
+        [2, 'Jackets', 'jackets']
+    ]
 
-    const addFruit = () => setArray([...array, `新しい果物${array.length + 1}`]);
-    const changeObjectB = () => setObject({ ...object, b: object.b + 1 });
-    const increaseApple = () => setAssocArray({ ...assocArray, apple: assocArray.apple + 1 });
-    const increaseBanana = () => setAssocArray({ ...assocArray, banana: assocArray.banana + 1 });
-    const increaseOrange = () => setAssocArray({ ...assocArray, orange: assocArray.orange + 1 });
+    const clothesObjectInArray  = [
+        {
+            id: 1,
+            title: 'Hats',
+            routeName: 'hats',
+        },
+        {
+            id: 2,
+            title: 'Jackets',
+            routeName: 'jackets',
+        }
+    ]
+
+    const hatValues: (string | number)[] = [];
+    for (const key in clothesObject.hats) {
+        const value = clothesObject.hats[key as keyof clothes];
+        hatValues.push(value);
+    }
+
+    const newClothesArray: (string | number)[] = [];
+    for (let i = 0; i < clothesArray.length; i++) {
+        // 内側の配列をループ
+        for (let j = 0; j < clothesArray[i].length; j++) {
+            newClothesArray.push(clothesArray[i][j]);
+        }
+    }
 
     return (
         <div className="container">
-            <h1 className="page-title">オブジェクトと配列・連想配列</h1>
+            <h1 className="page-title">オブジェクトと配列</h1>
 
             <section className="card">
-                <h2>配列とオブジェクトの対比</h2>
-                <p><strong>配列:</strong> {array.join(", ")}</p>
-                <p><strong>オブジェクト:</strong> a={object.a}, b={object.b}, c={object.c}</p>
-                <div className="btn-group">
-                    <button className="btn" onClick={addFruit}>配列に追加</button>
-                    <button className="btn" onClick={changeObjectB}>オブジェクトbを変更</button>
-                </div>
+                <h2>オブジェクト内のオブジェクトの値を取得</h2>
+                <p><strong>clothesObject.hats.title</strong></p>
+                <pre>=
+                    {
+                        JSON.stringify(clothesObject.hats.title)
+                    }
+                </pre>
             </section>
-
             <section className="card">
-                <h2>連想配列（果物の在庫）</h2>
-                <p>{JSON.stringify(assocArray, null, 2)}</p>
-                <div className="btn-group">
-                    <button className="btn" onClick={increaseApple}>apple +1</button>
-                    <button className="btn" onClick={increaseBanana}>banana +1</button>
-                    <button className="btn" onClick={increaseOrange}>orange +1</button>
-                </div>
+                <h2>オブジェクト内のオブジェクトを取得</h2>
+                <p><strong>clothesObject.hats</strong></p>
+                <pre> =
+                    {
+                        JSON.stringify(clothesObject.hats)
+                    }
+                </pre>
+            </section>
+            <section className="card">
+                <h2>オブジェクト内のオブジェクトの値を順に取得</h2>
+                <p><strong>clothesObject</strong></p>
+                <pre>=
+                    {
+                        JSON.stringify(hatValues)
+                    }
+                </pre>
+            </section>
+            <section className="card">
+                <h2>配列の0番目の要素（配列）の2番目の要素を取得</h2>
+                <p><strong>clothesArray[0][2]</strong></p>
+                <pre>=
+                    {
+                        JSON.stringify(clothesArray[0][2])
+                    }
+                </pre>
+            </section>
+            <section className="card">
+                <h2>配列の0番目の要素（配列）を取得</h2>
+                <p><strong>clothesArray[0]</strong></p>
+                <pre>=
+                    {
+                        JSON.stringify(clothesArray[0])
+                    }
+                </pre>
+            </section>
+            <section className="card">
+                <h2>配列を取得</h2>
+                <p><strong>clothesArray</strong></p>
+                <pre>=
+                    {
+                        JSON.stringify(clothesArray)
+                    }
+                </pre>
+            </section>
+            <section className="card">
+                <h2>配列の要素を別の配列に格納</h2>
+                <p><strong>clothesObject</strong></p>
+                <pre>=
+                    {
+                        JSON.stringify(newClothesArray)
+                    }
+                </pre>
             </section>
         </div>
     );
 }
 
-export default DetailPage2Content;
+export default DetailPage4Content;

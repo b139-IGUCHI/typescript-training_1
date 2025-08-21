@@ -1,5 +1,4 @@
-// postalCodeMap.ts
-// 上3桁ごとの代表住所マッピング
+// 上3桁ごとの代表住所マップ
 export const postalCodeMap: Record<string, string> = {
     "100": "東京都千代田区",
     "101": "東京都千代田区神田",
