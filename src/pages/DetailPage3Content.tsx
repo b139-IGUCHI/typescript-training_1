@@ -13,7 +13,6 @@ function DetailPage3Content() {
         address: () => getAddressFromPostalCode(postalCode)
     });
 
-    // 学習用の連想配列を State 管理
     const [data, setData] = useState<Record<string, string>>({ ...baseMap });
 
     const handlePostalCodeChange = (e: ChangeEvent<HTMLInputElement>) => {

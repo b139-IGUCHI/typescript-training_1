@@ -2,16 +2,16 @@ import "./../styles/DetailPage.css";
 import React from "react";
 
 function DetailPage4Content() {
-    //   // Record型 オブジェクトと配列の中にオブジェクトと配列がある例。key: valueの形で表現する。
-    // hatsとjacketsがオブジェクトであり、categoriesはhatsとjacketsを含むオブジェクトである。
+    //   // Record型 オブジェクトの中にオブジェクトがある例。key: valueの形で表現する。
+    // hatsとjacketsがオブジェクトであり、clothesObjectはhatsとjacketsを含むオブジェクトである。
     type clothes= {
-        id: number;　// key: value
+        id: number;
         title: string;
         routeName: string;
     }
     const clothesObject:Record<string, clothes> = {
         hats: {
-            id: 1,　// key: value
+            id: 1,
             title: 'Hats',
             routeName: 'hats'
         },
@@ -27,6 +27,7 @@ function DetailPage4Content() {
         [2, 'Jackets', 'jackets']
     ]
 
+   //  配列の中にオブジェクトがある例
     const clothesObjectInArray  = [
         {
             id: 1,
@@ -41,14 +42,16 @@ function DetailPage4Content() {
     ]
 
     const hatValues: (string | number)[] = [];
-    for (const key in clothesObject.hats) {
-        const value = clothesObject.hats[key as keyof clothes];
-        hatValues.push(value);
+    for (const category in clothesObject) {
+        const item = clothesObject[category];
+        for (const key in item) {
+            const value = item[key as keyof clothes];
+            hatValues.push(value);
+        }
     }
 
     const newClothesArray: (string | number)[] = [];
     for (let i = 0; i < clothesArray.length; i++) {
-        // 内側の配列をループ
         for (let j = 0; j < clothesArray[i].length; j++) {
             newClothesArray.push(clothesArray[i][j]);
         }
