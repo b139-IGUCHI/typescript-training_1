@@ -42,9 +42,12 @@ function DetailPage4Content() {
     ]
 
     const hatValues: (string | number)[] = [];
-    for (const key in clothesObject.hats) {
-        const value = clothesObject.hats[key as keyof clothes];
-        hatValues.push(value);
+    for (const category in clothesObject) {
+        const item = clothesObject[category];
+        for (const key in item) {
+            const value = item[key as keyof clothes];
+            hatValues.push(value);
+        }
     }
 
     const newClothesArray: (string | number)[] = [];
