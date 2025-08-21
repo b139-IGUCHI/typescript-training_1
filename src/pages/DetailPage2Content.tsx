@@ -9,12 +9,7 @@ function DetailPage4Content() {
         title: string;
         routeName: string;
     }
-    type hats={
-        id: number;　// key: value
-        title: string;
-        routeName: string;
-    }
-    const categoriesObject:Record<string, clothes> = {
+    const clothesObject:Record<string, clothes> = {
         hats: {
             id: 1,　// key: value
             title: 'Hats',
@@ -27,12 +22,12 @@ function DetailPage4Content() {
         }
     }
 
-    const categoriesArray  = [
+    const clothesArray  = [
         [1, 'Hats', 'hats'],
         [2, 'Jackets', 'jackets']
     ]
 
-    const categoriesObjectInArray  = [
+    const clothesObjectInArray  = [
         {
             id: 1,
             title: 'Hats',
@@ -46,8 +41,8 @@ function DetailPage4Content() {
     ]
 
     const hatValues: (string | number)[] = [];
-    for (const key in categoriesObject.hats) {
-        const value = categoriesObject.hats[key as keyof clothes];
+    for (const key in clothesObject.hats) {
+        const value = clothesObject.hats[key as keyof clothes];
         hatValues.push(value);
     }
 
@@ -57,25 +52,25 @@ function DetailPage4Content() {
 
             <section className="card">
                 <h2>オブジェクト内のオブジェクトの値を取得</h2>
-                <p><strong>categoriesObject.hats.title</strong></p>
+                <p><strong>clothesObject.hats.title</strong></p>
                 <pre>=
                     {
-                        JSON.stringify(categoriesObject.hats.title)
+                        JSON.stringify(clothesObject.hats.title)
                     }
                 </pre>
             </section>
             <section className="card">
                 <h2>オブジェクト内のオブジェクトを取得</h2>
-                <p><strong>categoriesObject.hats</strong></p>
+                <p><strong>clothesObject.hats</strong></p>
                 <pre> =
                     {
-                        JSON.stringify(categoriesObject.hats)
+                        JSON.stringify(clothesObject.hats)
                     }
                 </pre>
             </section>
             <section className="card">
                 <h2>オブジェクト内のオブジェクトの値を順に取得</h2>
-                <p><strong>categoriesObject</strong></p>
+                <p><strong>clothesObject</strong></p>
                 <pre>=
                     {
                         JSON.stringify(hatValues)
@@ -83,47 +78,38 @@ function DetailPage4Content() {
                 </pre>
             </section>
             <section className="card">
-                <h2>オブジェクトを取得</h2>
-                <p><strong>categoriesObject</strong></p>
+                <h2>配列の0番目の要素（配列）の2番目の要素を取得</h2>
+                <p><strong>clothesArray[0][2]</strong></p>
                 <pre>=
                     {
-                        JSON.stringify(categoriesObject)
+                        JSON.stringify(clothesArray[0][2])
                     }
                 </pre>
             </section>
             <section className="card">
-                <h2>オブジェクトを取得</h2>
-                <p><strong>categoriesObject</strong></p>
+                <h2>配列の0番目の要素（配列）を取得</h2>
+                <p><strong>clothesArray[0]</strong></p>
                 <pre>=
                     {
-                        JSON.stringify(categoriesObject)
-                    }
-                </pre>
-            </section>
-            <section className="card">
-                <h2>オブジェクトを取得</h2>
-                <p><strong>categoriesObject</strong></p>
-                <pre>=
-                    {
-                        JSON.stringify(categoriesObject)
-                    }
-                </pre>
-            </section>
-            <section className="card">
-                <h2>オブジェクトを取得</h2>
-                <p><strong>categoriesObject</strong></p>
-                <pre>=
-                    {
-                        JSON.stringify(categoriesObject)
+                        JSON.stringify(clothesArray[0])
                     }
                 </pre>
             </section>
             <section className="card">
                 <h2>配列を取得</h2>
-                <p><strong>categoriesObject</strong></p>
+                <p><strong>clothesArray</strong></p>
                 <pre>=
                     {
-                        JSON.stringify(categoriesArray)
+                        JSON.stringify(clothesArray)
+                    }
+                </pre>
+            </section>
+            <section className="card">
+                <h2>配列の要素を別の配列に格納</h2>
+                <p><strong>clothesObject</strong></p>
+                <pre>=
+                    {
+                        JSON.stringify()
                     }
                 </pre>
             </section>
