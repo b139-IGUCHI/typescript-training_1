@@ -46,6 +46,14 @@ function DetailPage4Content() {
         hatValues.push(value);
     }
 
+    const newClothesArray: (string | number)[] = [];
+    for (let i = 0; i < clothesArray.length; i++) {
+        // 内側の配列をループ
+        for (let j = 0; j < clothesArray[i].length; j++) {
+            newClothesArray.push(clothesArray[i][j]);
+        }
+    }
+
     return (
         <div className="container">
             <h1 className="page-title">オブジェクトと配列</h1>
@@ -109,7 +117,7 @@ function DetailPage4Content() {
                 <p><strong>clothesObject</strong></p>
                 <pre>=
                     {
-                        JSON.stringify()
+                        JSON.stringify(newClothesArray)
                     }
                 </pre>
             </section>
