@@ -45,16 +45,10 @@ function DetailPage4Content() {
         }
     ]
 
-
-
-
-
-    for (const key in categoriesObject) {
-            console.log(categoriesObject[key]);
-    }
-
+    const hatValues: (string | number)[] = [];
     for (const key in categoriesObject.hats) {
-        console.log(categoriesObject.hats[key]);
+        const value = categoriesObject.hats[key as keyof clothes];
+        hatValues.push(value);
     }
 
     return (
@@ -84,7 +78,7 @@ function DetailPage4Content() {
                 <p><strong>categoriesObject</strong></p>
                 <pre>=
                     {
-                    //    JSON.stringify(value)
+                        JSON.stringify(hatValues)
                     }
                 </pre>
             </section>
